@@ -6,9 +6,12 @@
 
 
 {% block content %}
+<div style="margin-top: 100px;"></div>
 {% for up in upload %}
-<h1>{{up.caption}}</h1>
 <h1>{{up.user}}</h1>
+<h1>{{up.caption}}</h1>
 <h1>{{up.timestamp}}</h1>
+<a href="{% url 'photo_app:edit' up.id %}">Edit<a>
+<img src="{{up.photo.url}}" alt="pic" style="height: 200px;width:200px;">
     {% endfor %}
   {% endblock %}

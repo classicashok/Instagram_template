@@ -1,0 +1,20 @@
+{% extends "photo_app/base.htm" %}
+{% block title %}
+    Add
+{% endblock %}
+
+
+
+{% block content %}
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+        <!-- <|-- {{form.as_p}} --> 
+        <!-- {{form.as_p}} -->
+        Caption: <input type="text" name="caption" placeholder="Enter your caption"><br>
+        Choose Photo: <input type="file" name="photo"><br>
+        <input type="hidden" name="likes" value="0">
+        <input type="hidden" name="user" value="{{request.session.id}}">
+        <input type="submit" value="upload">
+</form>
+
+{% endblock %}
