@@ -1,17 +1,57 @@
-{% extends "photo_app/base.htm" %}
-{% block title %}
-    Index
-{% endblock %}
+{% extends 'photo_app/base.htm' %}
+{% load static %}
 
+{% block main_content %}
+<main class="feed">
 
+    {% for up in upload %}
+    <section class="photo">
+        <header class="photo__header">
+            <div class="photo__header-column">
+                <img
+                    class="photo__avatar"
+                    src="{{up.uploaded_by.photo.url}}"
+                />
+            </div>
+            <div class="photo__header-column">
+                <span class="photo__username">{{up.uploaded_by.username}}</span>
+                <span class="photo__location">{{up.caption}}</span>
+            </div>
+        </header>
+        <div class="photo__file-container">
+            <img
+                class="photo__file"
+                src="{{up.photo.url}}"
+            />
+        </div>
+        <div class="photo__info">
+            <div class="photo__icons">
+                <span class="photo__icon">
+                    <i class="fa fa-heart-o heart fa-lg"></i>
+                </span>
+                <span class="photo__icon">
+                    <i class="fa fa-comment-o fa-lg"></i>
+                </span>
+            </div>
+            <span class="photo__likes">{{up.comments.all|length}} galler{{up.comments.all|pluralize:"y,ies"}}</span>
+            <ul class="photo__comments">
 
-{% block content %}
-<div style="margin-top: 100px;"></div>
-{% for up in upload %}
-<h1>{{up.user}}</h1>
-<h1>{{up.caption}}</h1>
-<h1>{{up.timestamp}}</h1>
-<a href="{% url 'photo_app:edit' up.id %}">Edit<a>
-<img src="{{up.photo.url}}" alt="pic" style="height: 200px;width:200px;">
+                {% for comment in up.comments.all|slice:":2" %}
+                <li class="photo__comment">
+                    <span class="photo__comment-author">{{comment.commented_by.username}}</span>{{comment.comment}}
+                </li>
+                {% endfor %}
+
+            </ul>
+            <span class="photo__time-ago">{{up.timestamp}}</span>
+            <div class="photo__add-comment-container">
+                <textarea placeholder="Add a comment..." class="photo__add-comment"></textarea>
+                <i class="fa fa-ellipsis-h"></i>
+            </div>
+        </div>
+    </section>
+    
     {% endfor %}
-  {% endblock %}
+</main>
+
+{% endblock %}
