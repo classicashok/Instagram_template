@@ -62,3 +62,43 @@ def delete(request,id)  :
     photo = PhotoModel.objects.get(id=id)   
     photo.delete()
     return redirect('photo_app:profile')   
+
+def profile_edit(request):
+    if 'id' in request.session:
+        user_id = request.session['id']
+        upload = PhotoModel.objects.filter(uploaded_by=user_id)
+        user = UserModel.objects.get(id= user_id)
+        dict = {'upload':upload,'user':user}
+        return render(request, 'photo_app/edit-profile.htm',dict)
+    else:
+        return redirect('user:login')
+
+def addphoto(request) :
+    if 'id' in request.session:
+        user_id = request.session['id']
+        upload = PhotoModel.objects.filter(uploaded_by=user_id)
+        user = UserModel.objects.get(id= user_id)
+        dict = {'upload':upload,'user':user}
+        return render(request,'photo_app/addphoto.htm',dict) 
+    else:
+        return redirect('user:login')
+
+
+def search(request):
+    if 'id' not in request.session:
+        return redirect('user:login')
+
+    user_id = request.session.get('q',None)
+
+    if request.method == 'GET':
+        querry = request.GET.get('q',None)
+        if querry:
+            d = {
+                'profiles':UserModel.objects.filter(username__icontains=querry).exclude(id=user_id),
+                'querry':querry
+            }
+            return render(request,'photo_app/search_results.htm', d)
+        else:
+            return redirect('photo_app:index')
+    else:
+        return redirect('photo_app:index')

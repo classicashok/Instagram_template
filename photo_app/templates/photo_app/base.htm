@@ -21,10 +21,12 @@
             </a>
             <div class="navigation__search-container">
                 <i class="fa fa-search"></i>
-                <input type="text" placeholder="Search">
+                <form action="{% url 'photo_app:search' %}" method="GET">
+                    <input id="search-bar" placeholder="Search" name="q">
+                </form>
             </div>
             <div class="navigation__icons">
-                <a href="explore.html" class="navigation__link">
+                <a href="{% url 'photo_app:addphoto' %}" class="navigation__link">
                     <i class="fa fa-compass"></i>
                 </a>
                 <a href="#" class="navigation__link">

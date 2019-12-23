@@ -1,17 +1,20 @@
+{% extends "photo_app/base.htm" %}
+
 {% block main_content %}
+{% load static %}
 <main class="profile-container">
     <section class="profile">
         <header class="profile__header">
             <div class="profile__avatar-container">
                 <img 
-                    src="images/avatar.jpg"
+                    src="{% static 'images/avatar.jpg' %}"
                     class="profile__avatar"
                 />
             </div>
             <div class="profile__info">
                 <div class="profile__name">
                     <h1 class="profile__title">serranoarevalo</h1>
-                    <a href="edit-profile.html" class="profile__button u-fat-text">Edit profile</a>
+                    <a href="{% url 'photo_app:profile_edit' %}" class="profile__button u-fat-text">Edit profile</a>
                     <i class="fa fa-cog fa-2x" id="cog"></i>
                 </div>
                 <ul class="profile__numbers">
@@ -35,7 +38,7 @@
         <div class="profile__pictures">
             <a href="image-detail.html" class="profile-picture">
                 <img
-                    src="images/feedPhoto.jpg"
+                    src="{% static 'images/feedPhoto.jpg' %}"
                     class="profile-picture__picture"
                 />
                 <div class="profile-picture__overlay">
@@ -49,7 +52,7 @@
             </a>
             <a href="image-detail.html" class="profile-picture">
                 <img
-                    src="images/feedPhoto.jpg"
+                    src="{% static 'images/feedPhoto.jpg' %}"
                     class="profile-picture__picture"
                 />
                 <div class="profile-picture__overlay">
@@ -63,7 +66,7 @@
             </a>
             <a href="image-detail.html" class="profile-picture">
                 <img
-                    src="images/feedPhoto.jpg"
+                    src="{% static 'images/feedPhoto.jpg' %}"
                     class="profile-picture__picture"
                 />
                 <div class="profile-picture__overlay">
@@ -77,7 +80,7 @@
             </a>
             <a href="image-detail.html" class="profile-picture">
                 <img
-                    src="images/feedPhoto.jpg"
+                    src="{% static 'images/feedPhoto.jpg' %}"
                     class="profile-picture__picture"
                 />
                 <div class="profile-picture__overlay">
@@ -91,7 +94,7 @@
             </a>
             <a href="image-detail.html" class="profile-picture">
                 <img
-                    src="images/feedPhoto.jpg"
+                    src="{% static 'images/feedPhoto.jpg' %}"
                     class="profile-picture__picture"
                 />
                 <div class="profile-picture__overlay">
@@ -105,7 +108,7 @@
             </a>
             <a href="image-detail.html" class="profile-picture">
                 <img
-                    src="images/feedPhoto.jpg"
+                    src="{% static 'images/feedPhoto.jpg' %}"
                     class="profile-picture__picture"
                 />
                 <div class="profile-picture__overlay">
